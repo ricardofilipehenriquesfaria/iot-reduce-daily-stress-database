@@ -20,7 +20,27 @@ CREATE TABLE IF NOT EXISTS `funchal_roads` (
   `largura_via` double NOT NULL,
   `tipo_pavimento` text NOT NULL,
   `estado_conservacao` text NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `bounding_boxes`;
+CREATE TABLE `bounding_boxes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_funchal_roads` int(11) NOT NULL,
+  `southLatitude` double NOT NULL,
+  `northLatitude` double NOT NULL,
+  `westLongitude` double NOT NULL,
+  `eastLongitude` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `polygonpoints`;
+CREATE TABLE `polygonpoints` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_funchal_roads` int(11) NOT NULL,
+  `latitude` int(11) NOT NULL,
+  `longitude` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
