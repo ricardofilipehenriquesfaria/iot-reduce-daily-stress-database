@@ -38,8 +38,8 @@ DROP TABLE IF EXISTS `polygonpoints`;
 CREATE TABLE `polygonpoints` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_funchal_roads` int(11) NOT NULL,
-  `latitude` int(11) NOT NULL,
-  `longitude` int(11) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
