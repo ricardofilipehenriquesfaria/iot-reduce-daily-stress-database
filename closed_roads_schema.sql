@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 29-Mar-2019 às 00:15
+-- Generation Time: 03-Abr-2019 às 22:58
 -- Versão do servidor: 5.7.22-0ubuntu0.17.10.1-log
 -- PHP Version: 7.1.17-0ubuntu0.17.10.1
 
@@ -108,6 +108,30 @@ CREATE TABLE IF NOT EXISTS `civil_protection_geodata` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `node`
+--
+
+DROP TABLE IF EXISTS `node`;
+CREATE TABLE IF NOT EXISTS `node` (
+  `id` int(11) NOT NULL,
+  `civil_protection_geodata_id` int(11) NOT NULL,
+  `node_id` int(11) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `civil_protection_geodata_constraint` (`civil_protection_geodata_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS FOR TABLE `node`:
+--   `civil_protection_geodata_id`
+--       `civil_protection_geodata` -> `id`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `temp_civil_protection`
 --
 
@@ -143,6 +167,12 @@ CREATE TABLE IF NOT EXISTS `temp_civil_protection` (
 ALTER TABLE `civil_protection_geodata`
   ADD CONSTRAINT `civil_protection_constraint` FOREIGN KEY (`civil_protection_id`) REFERENCES `civil_protection` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `temp_civil_protection_constraint` FOREIGN KEY (`temp_civil_protection_id`) REFERENCES `temp_civil_protection` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `node`
+--
+ALTER TABLE `node`
+  ADD CONSTRAINT `civil_protection_geodata_constraint` FOREIGN KEY (`civil_protection_geodata_id`) REFERENCES `civil_protection_geodata` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
